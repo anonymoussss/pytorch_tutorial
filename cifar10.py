@@ -61,8 +61,7 @@ net.to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
-# 训练网络
-# 迭代epoch
+
 for epoch in range(20):
 
     running_loss = 0.0
@@ -77,15 +76,15 @@ for epoch in range(20):
 
         # forward + backward + optimize
         outputs = net(inputs)
-        loss = criterion(outputs, labels)  # 计算loss
-        loss.backward()     # loss 求导
-        optimizer.step()    # 更新参数
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
 
         # print statistics
-        running_loss += loss.item()  # tensor.item()  获取tensor的数值
+        running_loss += loss.item()  # tensor.item()  get tensor value
         if i % 2000 == 1999:
             print('[%d, %5d] loss: %.3f' %
-                  (epoch + 1, i + 1, running_loss / 2000))  # 每2000次迭代，输出loss的平均值
+                  (epoch + 1, i + 1, running_loss / 2000))
             running_loss = 0.0
             
 
